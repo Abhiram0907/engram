@@ -1,68 +1,36 @@
-# Engram Monorepo
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## 🚀 Getting Started
+## Getting Started
 
-### 1. Prerequisites
-- **Node.js** (v18+)
-- **pnpm** (preferred) or npm
+First, run the development server:
 
-### 2. Installation
-Install all dependencies from the root:
 ```bash
-pnpm install
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### 3. Running the Web App
-Start the Next.js development server:
-```bash
-# Run from root
-pnpm --filter web dev
-# OR cd into the app
-cd apps/web && pnpm dev
-```
-The app will be available at [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
----
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## 🛠 Testing the API
-The `POST /api/log` endpoint is ready for testing.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Using cURL (Terminal)
-**Test a Valid Request:**
-```bash
-curl -X POST http://localhost:3000/api/log \
-  -H "Content-Type: application/json" \
-  -d '{"apiKey": "test-key", "hash": "my-secure-hash", "metadata": {"source": "manual"}}'
-```
+## Learn More
 
-**Response:**
-```json
-{
-  "success": true,
-  "transactionId": "tx_12345...",
-  "status": "logged",
-  "timestamp": "..."
-}
-```
+To learn more about Next.js, take a look at the following resources:
 
-### Using Browser Console
-1. Open [http://localhost:3000](http://localhost:3000) in Chrome/Safari/Firefox.
-2. Open Developer Tools (Cmd+Option+J).
-3. Paste this snippet:
-```javascript
-fetch('/api/log', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({
-    apiKey: 'browser-test',
-    hash: 'browser-hash-123',
-    metadata: { userAgent: navigator.userAgent }
-  })
-})
-.then(res => res.json())
-.then(console.log);
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## 📂 Structure
-- `apps/web`: Next.js App Router application.
-- `packages/`: Shared packages (currently holds `sdk-python`).
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
