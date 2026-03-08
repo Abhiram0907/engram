@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Loader2, ExternalLink, ArrowRight } from 'lucide-react';
 
 export default function Home() {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
   const [content, setContent] = useState('');
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<{ url: string; topicUrl?: string; status: string } | null>(null);
@@ -18,7 +19,11 @@ export default function Home() {
     setResult(null);
 
     try {
-      const response = await fetch('/api/notarize', {
+      if (!apiBaseUrl) {
+        throw new Error('NEXT_PUBLIC_API_BASE_URL is not set');
+      }
+
+      const response = await fetch(`${apiBaseUrl.replace(/\/$/, '')}/notarize`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ content }),
@@ -31,8 +36,8 @@ export default function Home() {
       }
 
       setResult(data);
-    } catch (err: any) {
-      setError(err.message || 'An unexpected error occurred');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An unexpected error occurred');
     } finally {
       setLoading(false);
     }

@@ -1,29 +1,24 @@
 {
   "name": "engram",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/web",
+    "apps/api"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "eslint"
-  },
-  "dependencies": {
-    "@hashgraph/sdk": "^2.80.0",
-    "lucide-react": "^0.563.0",
-    "next": "16.1.6",
-    "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "dev": "concurrently -n web,api -c blue,green \"npm run dev --workspace apps/web\" \"npm run dev --workspace apps/api\"",
+    "dev:web": "npm run dev --workspace apps/web",
+    "dev:api": "npm run dev --workspace apps/api",
+    "build": "npm run build --workspace apps/web && npm run build --workspace apps/api",
+    "build:web": "npm run build --workspace apps/web",
+    "build:api": "npm run build --workspace apps/api",
+    "start": "concurrently -n web,api -c blue,green \"npm run start --workspace apps/web\" \"npm run start --workspace apps/api\"",
+    "start:web": "npm run start --workspace apps/web",
+    "start:api": "npm run start --workspace apps/api",
+    "lint": "npm run lint --workspace apps/web && npm run lint --workspace apps/api"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "babel-plugin-react-compiler": "1.0.0",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "concurrently": "^9.2.1"
   }
 }
