@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-gray-50 text-gray-900 p-4 font-[family-name:var(--font-geist-sans)]">
       <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 border border-gray-100">
-        <h1 className="text-2xl font-bold mb-2 tracking-tight">EnGram</h1>
+        <h1 className="text-2xl font-bold mb-2 tracking-tight">Engram</h1>
         <p className="text-gray-500 mb-6 text-sm">
           Immutable logging via Hedera Consensus Service
         </p>
